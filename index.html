@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina Studio</title>
+  <!-- Tailwind CSS -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Boldonse&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+  <style type="text/tailwindcss">
+    @theme {
+      --color-milk: #fbf7f4;
+      --color-oat: #e5ded2;
+      --color-taupe:#a39382;
+      --color-mocha:#685d54;
+      --color-charcoal:#232323;
+      --font-inter: 'Inter', sans-serif;
+      --font-boldonse: 'Boldonse', sans-serif;
+    }
+  </style>
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-zone {
+      opacity: 0;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+
+<body class="w-full min-h-screen bg-milk overflow-x-hidden selection:bg-taupe selection:text-milk">
+  <div class="hidden md:flex bg-charcoal h-10 w-full text-center justify-center gap-2 items-center text-milk text-xs animate-zone">
+    <i class="bi bi-truck"></i>
+    <p>Envío gratis en compras superiores a $180.000</p>
+  </div>
+
+  <nav class="flex px-4 md:px-8 py-4 w-full h-16 items-center animate-zone" style="animation-delay: 0.1s;">
+    <div class="flex justify-between items-center w-full text-charcoal">
+      <a href="home">
+        <p class="font-boldonse text-lg leading-tight hover:text-mocha transition-colors duration-200">Lumina Studio
+        </p>
+      </a>
+
+      <div class="hidden md:flex gap-6 font-inter text-sm items-center font-semibold">
+        <a href="#" class="border-b-2 border-transparent hover:text-taupe hover:border-taupe transition-all duration-200">Home</a>
+        <a href="#" class="border-b-2 border-transparent hover:text-taupe hover:border-taupe transition-all duration-200">Shop</a>
+        <a href="#" class="border-b-2 border-transparent hover:text-taupe hover:border-taupe transition-all duration-200">About</a>
+        <a href="#" class="border-b-2 border-transparent hover:text-taupe hover:border-taupe transition-all duration-200">Contact</a>
+      </div>
+
+      <div class="hidden md:flex gap-x-6 text-xl font-semibold">
+        <a href="#" class="hover:text-taupe"><i class="bi bi-cart"></i></a>
+        <a href="index.html" class="hover:text-taupe"><i class="bi bi-person"></i></a>
+        <a href="#" class="hover:text-taupe"><i class="bi bi-heart"></i></a>
+        <a href="#" class="hover:text-taupe"><i class="bi bi-search"></i></a>
+      </div>
+
+      <i id="open-menu" class="bi bi-list text-2xl cursor-pointer md:hidden"></i>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu"
+    class="fixed inset-0 z-50 bg-charcoal/95 backdrop-blur-md transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col pt-8 px-10">
+    <div class="flex justify-end w-full">
+      <button id="close-menu" class="text-milk/80 text-2xl hover:text-white transition-colors">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <!-- Rediseñado campo de búsqueda -->
+    <div class="w-full mt-6 relative">
+      <input type="text" placeholder="Buscar productos..."
+        class="w-full bg-transparent border-b border-taupe/40 text-milk font-inter text-sm py-2 focus:outline-none focus:border-taupe placeholder:text-taupe/60 transition-colors">
+      <i class="bi bi-search absolute right-0 top-1/2 -translate-y-1/2 text-taupe/60"></i>
+    </div>
+
+    <div class="flex flex-col gap-6 font-inter font-semibold xt-xl font-light tracking-wide text-milk mt-12">
+      <a href="#" class="hover:text-taupe transition-colors">Home</a>
+      <a href="#" class="hover:text-taupe transition-colors">Shop</a>
+      <a href="#" class="hover:text-taupe transition-colors">About</a>
+      <a href="#" class="hover:text-taupe transition-colors">Contact</a>
+    </div>
+
+    <div
+      class="flex flex-col gap-5 font-inter font-light text-[15px] text-milk/70 mt-auto mb-16 border-t border-taupe/20 pt-8">
+      <a href="index.html" class="flex items-center gap-4 hover:text-milk transition-colors"><i
+          class="bi bi-person text-lg"></i> Mi cuenta</a>
+      <a href="#" class="flex items-center gap-4 hover:text-milk transition-colors"><i class="bi bi-heart text-lg"></i>
+        Mis favoritos</a>
+      <a href="#" class="flex items-center gap-4 hover:text-milk transition-colors"><i class="bi bi-cart text-lg"></i>
+        Carrito</a>
+    </div>
+  </div>
+  <div class="flex px-8 md:px-16 py-4 mt-8 w-full h-16 items-center animate-zone" style="animation-delay: 0.2s;">
+    <a href="index.html"
+      class="group flex gap-2 items-center text-taupe font-semibold text-sm hover:text-mocha transition-colors duration-200 font-inter">
+      <i class="bi bi-arrow-left transition-transform duration-200 group-hover:-translate-x-1"></i>
+      <p>Volver a la tienda</p>
+    </a>
+
+  </div>
+  <main class="flex flex-col md:flex-row w-full h-full">
+    <div class="flex flex-col w-full md:w-7/12 px-8 md:px-16 py-4">
+      <h1 class="text-4xl font-boldonse text-charcoal animate-zone" style="animation-delay: 0.3s;">Checkout</h1>
+      <div class="flex items-center justify-between mt-10 text-xs font-inter text-charcoal animate-zone" style="animation-delay: 0.4s;">
+
+        <div class="flex items-center space-x-2">
+          <div class="flex items-center justify-center w-6 h-6 rounded-full bg-taupe/30">
+            <i class="bi bi-check-lg text-charcoal"></i>
+          </div>
+          <p class="font-medium">Carrito</p>
+        </div>
+
+        <div class="flex-1 mx-4 h-px bg-taupe transition-colors duration-300"></div>
+
+        <div id="stepper-info" class="flex items-center space-x-2 transition-opacity duration-300">
+          <div
+            class="stepper-circle flex items-center justify-center w-6 h-6 rounded-full bg-charcoal text-milk transition-colors duration-300">
+            <span class="stepper-num">2</span>
+            <i class="bi bi-check-lg text-charcoal hidden stepper-check"></i>
+          </div>
+          <p class="stepper-text font-bold transition-all duration-300">Información</p>
+        </div>
+
+        <div id="line-info-shipping" class="flex-1 mx-4 h-px bg-taupe/30 transition-colors duration-300"></div>
+
+        <div id="stepper-shipping" class="flex items-center space-x-2 opacity-40 transition-opacity duration-300">
+          <div
+            class="stepper-circle flex items-center justify-center w-6 h-6 rounded-full bg-taupe/30 text-charcoal transition-colors duration-300">
+            <span class="stepper-num">3</span>
+            <i class="bi bi-check-lg text-charcoal hidden stepper-check"></i>
+          </div>
+          <p class="stepper-text font-medium transition-all duration-300">Envío</p>
+        </div>
+
+        <div id="line-shipping-payment" class="flex-1 mx-4 h-px bg-taupe/30 transition-colors duration-300"></div>
+
+        <div id="stepper-payment" class="flex items-center space-x-2 opacity-40 transition-opacity duration-300">
+          <div
+            class="stepper-circle flex items-center justify-center w-6 h-6 rounded-full bg-taupe/30 text-charcoal transition-colors duration-300">
+            <span class="stepper-num"><i class="bi bi-credit-card text-xs"></i></span>
+            <i class="bi bi-check-lg text-charcoal hidden stepper-check"></i>
+          </div>
+          <p class="stepper-text font-medium transition-all duration-300">Pago</p>
+        </div>
+
+      </div>
+      <!-- Formulario principal -->
+      <form id="checkout-form" class="w-full animate-zone" style="animation-delay: 0.5s;">
+
+        <!-- PASO 1: INFORMACIÓN Y ENVÍO -->
+        <div id="step-1-info" class="flex flex-col">
+          <div class="flex font-inter justify-between text-sm mt-10">
+            <h2 class="font-boldonse text-charcoal">Información</h2>
+            <p class="text-taupe text-xs">¿Ya tenés una cuenta?
+              <a href="index.html"
+                class="text-charcoal font-semibold border-b border-charcoal hover:border-mocha hover:text-mocha transition-colors duration-200">Iniciar
+                sesión</a>
+            </p>
+          </div>
+          <div class="flex font-inter font-semibold text-charcoal justify-start mt-10 text-sm">
+            <h3>Información personal</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-2 tracking-wider">
+            <div class="flex flex-col w-full">
+              <input type="text" id="name" placeholder="Nombre" required
+                class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+            </div>
+            <div class="flex flex-col w-full">
+              <input type="text" id="lastname" placeholder="Apellido" required
+                class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-2 tracking-wider">
+            <div class="flex flex-col w-full">
+              <input type="email" id="email" placeholder="Email" required
+                class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+            </div>
+            <div class="flex flex-col w-full">
+              <input type="tel" id="phone" placeholder="Teléfono" required
+                class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+            </div>
+          </div>
+
+          <div class="flex font-inter font-semibold text-charcoal justify-start mt-14 text-sm">
+            <h3>Dirección de envío</h3>
+          </div>
+          <div class="grid grid-cols-1 gap-8 mt-2 tracking-wider">
+            <div class="flex flex-col w-full">
+              <input type="text" id="address" placeholder="Calle y número" required
+                class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+            </div>
+          </div>
+          <div class="grid grid-cols-1 gap-8 mt-2 tracking-wider">
+            <div class="flex flex-col w-full">
+              <input type="text" id="apartment" placeholder="Departamento, piso, etc. (Opcional)"
+                class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-2 tracking-wider">
+            <div class="flex flex-col w-full">
+              <input type="text" id="city" placeholder="Ciudad" required
+                class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+            </div>
+            <div class="flex flex-col w-full">
+              <input type="text" id="state" placeholder="Provincia" required
+                class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-2 tracking-wider">
+            <div class="flex flex-col w-full">
+              <input type="text" id="zipcode" placeholder="Código Postal" required
+                class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+            </div>
+          </div>
+
+          <div class="flex font-inter font-semibold text-charcoal justify-between mt-10 text-sm">
+            <button type="button" class="group text-charcoal cursor-pointer hover:text-mocha transition-colors duration-200 flex items-center">
+              <i class="bi bi-arrow-left mr-2 transition-transform duration-200 group-hover:-translate-x-1"></i>
+              Volver al carrito</button>
+            <button type="button" id="btn-continue"
+              class="group bg-charcoal text-milk px-6 py-2 rounded-full hover:bg-mocha transition-all duration-200 active:scale-95 cursor-pointer flex items-center">Continuar
+              <i class="bi bi-arrow-right ml-2 transition-transform duration-200 group-hover:translate-x-1"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- PASO 2: PAGO (Oculto inicialmente) -->
+        <div id="step-2-payment" class="flex flex-col hidden animate-[fadeIn_0.3s_ease-in-out]">
+          <div class="flex text-charcoal justify-start mt-10 text-sm">
+            <h2 class="font-boldonse text-charcoal">Seleccioná el método de envío</h2>
+          </div>
+
+          <label
+            class="mt-6 mx-auto px-6 py-4 flex items-center justify-between text-taupe border border-taupe rounded-lg w-full md:w-4/5 min-h-[6rem] font-inter cursor-pointer hover:bg-milk/50 has-[:checked]:bg-milk has-[:checked]:ring-2 has-[:checked]:ring-charcoal has-[:checked]:shadow-md transition-all duration-200">
+            <div class="flex items-center gap-4">
+              <input type="radio" name="shipping-method" value="pickup" checked required
+                class="w-4 h-4 text-mocha bg-transparent border-taupe focus:ring-mocha accent-mocha">
+              <i class="bi bi-geo-alt text-charcoal text-2xl"></i>
+              <div class="flex flex-col">
+                <p class="text-charcoal text-sm font-semibold">Retiro por sucursal</p>
+                <p class="text-taupe text-xs mt-1">Listo para retirar en 2hs. Te avisaremos por mail cuando esté
+                  disponible.</p>
+              </div>
+            </div>
+            <p class="font-bold text-charcoal text-sm whitespace-nowrap ml-4">Gratis</p>
+          </label>
+
+          <label
+            class="mt-6 mx-auto px-6 py-4 flex items-center justify-between text-taupe border border-taupe rounded-lg w-full md:w-4/5 min-h-[6rem] font-inter cursor-pointer hover:bg-milk/50 has-[:checked]:bg-milk has-[:checked]:ring-2 has-[:checked]:ring-charcoal has-[:checked]:shadow-md transition-all duration-200">
+            <div class="flex items-center gap-4">
+              <input type="radio" name="shipping-method" value="motorcycle"
+                class="w-4 h-4 text-mocha bg-transparent border-taupe focus:ring-mocha accent-mocha">
+              <i class="bi bi-truck text-charcoal text-2xl"></i>
+              <div class="flex flex-col">
+                <p class="text-charcoal text-sm font-semibold">Retiro en Sucursal Andreani</p>
+                <p class="text-taupe text-xs mt-1">Elegí la sucursal más cercana. El paquete te espera 5 días para que
+                  lo retires cuando quieras.</p>
+              </div>
+            </div>
+            <p class="font-bold text-charcoal text-sm whitespace-nowrap ml-4">$5.500</p>
+          </label>
+
+          <label
+            class="mt-6 mx-auto px-6 py-4 flex items-center justify-between text-taupe border border-taupe rounded-lg w-full md:w-4/5 min-h-[6rem] font-inter cursor-pointer hover:bg-milk/50 has-[:checked]:bg-milk has-[:checked]:ring-2 has-[:checked]:ring-charcoal has-[:checked]:shadow-md transition-all duration-200">
+            <div class="flex items-center gap-4">
+              <input type="radio" name="shipping-method" value="delivery"
+                class="w-4 h-4 text-mocha bg-transparent border-taupe focus:ring-mocha accent-mocha">
+              <i class="bi bi-truck text-charcoal text-2xl"></i>
+              <div class="flex flex-col">
+                <p class="text-charcoal text-sm font-semibold">Envío a domicilio (Andreani)</p>
+                <p class="text-taupe text-xs mt-1">Entrega a todo el país. Llega entre 3 y 6 días hábiles.</p>
+              </div>
+            </div>
+            <p class="font-bold text-charcoal text-sm whitespace-nowrap ml-4">$7.200</p>
+          </label>
+
+
+          <div class="flex font-inter font-semibold text-charcoal justify-between mt-10 text-sm">
+            <button type="button" id="btn-back"
+              class="group text-charcoal cursor-pointer hover:text-mocha transition-colors duration-200 flex items-center">
+              <i class="bi bi-arrow-left mr-2 transition-transform duration-200 group-hover:-translate-x-1"></i>
+              Volver a información</button>
+            <button type="button" id="btn-continue-payment"
+              class="group bg-charcoal text-milk px-6 py-2 rounded-full hover:bg-mocha transition-all duration-200 active:scale-95 cursor-pointer flex items-center">Continuar
+              a pago
+              <i class="bi bi-arrow-right ml-2 transition-transform duration-200 group-hover:translate-x-1"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- PASO 3: PAGO (Oculto inicialmente) -->
+        <div id="step-3-checkout" class="flex flex-col hidden animate-[fadeIn_0.3s_ease-in-out]">
+          <div class="flex text-charcoal justify-start mt-10 text-sm">
+            <h2 class="font-boldonse text-charcoal">Seleccioná tu método de pago</h2>
+          </div>
+
+          <!-- Opción 1: Tarjeta de crédito o débito -->
+          <label
+            class="mt-6 mx-auto px-6 py-4 flex items-center justify-between text-taupe border border-taupe rounded-lg w-full md:w-4/5 font-inter cursor-pointer hover:bg-milk/50 has-[:checked]:bg-milk has-[:checked]:ring-2 has-[:checked]:ring-charcoal has-[:checked]:shadow-md transition-all duration-200">
+            <div class="flex items-center gap-4">
+              <input type="radio" name="payment-method" value="credit-card" checked
+                class="w-4 h-4 text-mocha bg-transparent border-taupe focus:ring-mocha accent-mocha">
+              <i class="bi bi-credit-card text-charcoal text-2xl"></i>
+              <div class="flex flex-col">
+                <p class="text-charcoal text-sm font-semibold">Tarjeta de crédito o débito</p>
+                <div class="flex gap-2 mt-2">
+                  <div class="w-8 h-5 bg-taupe/30 rounded flex items-center justify-center"><i
+                      class="bi bi-credit-card-2-front text-charcoal text-[10px]"></i></div>
+                  <div class="w-8 h-5 bg-taupe/30 rounded flex items-center justify-center"><i
+                      class="bi bi-credit-card-fill text-charcoal text-[10px]"></i></div>
+                </div>
+              </div>
+            </div>
+          </label>
+
+          <!-- Detalles de tarjeta (Expandible) -->
+          <div id="credit-card-details"
+            class="flex flex-col gap-4 mt-2 mb-4 mx-auto w-full tracking-wider md:w-4/5 px-6 animate-[fadeIn_0.3s_ease-in-out]">
+            <input type="text" placeholder="Número de tarjeta" required
+              class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+            <div class="grid grid-cols-2 gap-4">
+              <input type="text" placeholder="Vencimiento (MM/AA)" required
+                class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+              <input type="text" placeholder="Código de seguridad" required
+                class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+            </div>
+            <input type="text" placeholder="Nombre como figura en la tarjeta" required
+              class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+            <input type="text" placeholder="DNI del titular" required
+              class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 placeholder:text-mocha/70 placeholder:font-semibold placeholder:text-xs">
+
+            <select
+              class="border-b border-taupe bg-transparent py-2 focus:outline-none focus:border-mocha transition-colors duration-200 text-mocha font-semibold text-xs mt-2 cursor-pointer outline-none">
+              <option value="1">1 pago sin interés</option>
+              <option value="3">3 cuotas sin interés</option>
+              <option value="6">6 cuotas fijas</option>
+            </select>
+          </div>
+
+          <!-- Opción 2: Transferencia bancaria -->
+          <label
+            class="mt-2 mx-auto px-6 py-4 flex items-center justify-between text-taupe border border-taupe rounded-lg w-full md:w-4/5 font-inter cursor-pointer hover:bg-milk/50 has-[:checked]:bg-milk has-[:checked]:ring-2 has-[:checked]:ring-charcoal has-[:checked]:shadow-md transition-all duration-200">
+            <div class="flex items-center gap-4">
+              <input type="radio" name="payment-method" value="transfer"
+                class="w-4 h-4 text-mocha bg-transparent border-taupe focus:ring-mocha accent-mocha">
+              <i class="bi bi-bank text-charcoal text-2xl"></i>
+              <div class="flex flex-col">
+                <p class="text-charcoal text-sm font-semibold">Transferencia bancaria</p>
+                <p class="text-taupe text-xs mt-1">10% de descuento</p>
+              </div>
+            </div>
+          </label>
+
+          <!-- Detalles de transferencia (Expandible) -->
+          <div id="transfer-details"
+            class="hidden flex-col gap-1 mt-2 mb-4 mx-auto w-full md:w-4/5 px-6 text-sm text-charcoal font-inter animate-[fadeIn_0.3s_ease-in-out]">
+            <p class="font-semibold text-mocha mb-1">Datos para la transferencia:</p>
+            <p><strong>CBU / CVU:</strong> 0000003100080000000000</p>
+            <p><strong>Alias:</strong> lumina.studio.ok</p>
+            <p><strong>Titular:</strong> Lumina Studio S.A.</p>
+            <p><strong>Banco:</strong> Banco Santander</p>
+            <p class="text-taupe text-xs mt-3">Una vez realizada la transferencia, enviá el comprobante a <a
+                href="mailto:pagos@luminastudio.com"
+                class="font-semibold border-b border-taupe hover:text-mocha">pagos@luminastudio.com</a> con tu número de
+              orden.</p>
+          </div>
+
+          <div class="flex font-inter font-semibold text-charcoal justify-between mt-10 text-sm">
+            <button type="button" id="btn-back-shipping"
+              class="group text-charcoal cursor-pointer hover:text-mocha transition-colors duration-200 flex items-center">
+              <i class="bi bi-arrow-left mr-2 transition-transform duration-200 group-hover:-translate-x-1"></i>
+              Volver a envíos</button>
+            <button type="submit"
+              class="bg-charcoal text-milk px-8 py-2 rounded-full hover:bg-mocha transition-all duration-200 active:scale-95 cursor-pointer">Finalizar
+              compra
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
+    <div class="flex w-full md:w-5/12 sticky top-0 px-4 md:px-8 py-2 text-charcoal animate-zone" style="animation-delay: 0.6s;">
+      <div class="flex flex-col w-full mx-6 md:mr-6 bg-oat/50 rounded-3xl shadow-lg p-8 md:p-10 border border-oat">
+
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="font-boldonse text-lg">Resumen de tu compra (2)</h2>
+        </div>
+
+        <div class="relative group mt-4">
+          <!-- Container for scrolling -->
+          <div id="cart-slider"
+            class="flex overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] w-full items-start gap-6 pb-2 scroll-smooth px-[10%] pt-2 cursor-grab active:cursor-grabbing">
+
+            <!-- Product 1 -->
+            <div class="w-[85%] flex-shrink-0 snap-center flex flex-col items-center">
+              <div class="w-full aspect-square overflow-hidden rounded-2xl border border-oat shadow-inner bg-white">
+                <img src="https://i.etsystatic.com/59977135/r/il/e28973/7332768661/il_794xN.7332768661_1i3r.jpg"
+                  alt="Lámpara Orea" class="w-full h-full object-cover" draggable="false">
+              </div>
+
+              <div class="mt-4 px-1 w-full">
+                <div class="flex justify-between items-start">
+                  <div class="flex flex-col">
+                    <h3 class="font-boldonse text-base">Lámpara Orea</h3>
+                    <p class="font-inter text-xs text-mocha tracking-wide leading-relaxed pt-1">Edición Blanco Nieve |
+                      Impresión 3D Orgánica</p>
+                    <p class="font-boldonse text-sm text-charcoal mt-2">$139.900</p>
+                  </div>
+                  <span
+                    class="font-inter text-xs font-semibold bg-taupe text-milk px-2 py-1 rounded-md border border-oat">x1</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="w-[85%] flex-shrink-0 snap-center flex flex-col items-center">
+              <div class="w-full aspect-square overflow-hidden rounded-2xl border border-oat shadow-inner bg-white">
+                <img src="https://i.pinimg.com/1200x/1f/c9/6f/1fc96f78927dd85d9039710232907ba9.jpg" alt="Lámpara Lüma">
+              </div>
+
+              <div class="mt-4 px-1 w-full">
+                <div class="flex justify-between items-start">
+                  <div class="flex flex-col">
+                    <h3 class="font-boldonse text-base">Lámpara Lüma</h3>
+                    <p class="font-inter text-xs text-mocha tracking-wide leading-relaxed pt-1">Edición Verde Musgo |
+                      Torsión Geométrica Avanzada</p>
+                    <p class="font-boldonse text-sm text-charcoal mt-2">$154.900</p>
+                  </div>
+                  <span
+                    class="font-inter text-xs font-semibold bg-taupe text-milk px-2 py-1 rounded-md border border-oat">x1</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="flex gap-1.5 mt-2 px-10 md:px-12" id="cart-slider-indicators">
+            <div class="h-1 flex-1 bg-charcoal rounded-full transition-colors duration-300"></div>
+            <div class="h-1 flex-1 bg-oat/60 rounded-full transition-colors duration-300"></div>
+          </div>
+        </div>
+
+        <div class="h-px bg-oat/60 w-full my-6"></div>
+
+        <div class="space-y-3 font-inter text-xs px-1">
+          <div class="flex justify-between text-mocha">
+            <span>Subtotal</span>
+            <span class="text-charcoal font-medium">$294.800</span>
+          </div>
+          <div class="flex justify-between text-mocha">
+            <span>Envío</span>
+            <span class="text-charcoal font-medium">$7.200</span>
+          </div>
+          <div class="flex justify-between text-emerald-700 font-medium italic">
+            <span>Dto. Transferencia (-10%)</span>
+            <span>-$30.230</span>
+          </div>
+        </div>
+
+        <div class="my-8 pt-6 border-t border-charcoal/10 flex flex-col gap-3">
+          <div class="flex justify-between items-center font-inter text-xs text-mocha opacity-70">
+            <span>Total sin descuento</span>
+            <span class="line-through decoration-charcoal/40 font-medium">$302.300</span>
+          </div>
+          <div class="flex justify-between items-end">
+            <span class="font-inter text-[10px] uppercase tracking-[0.2em] text-mocha mb-1">Total</span>
+            <span class="font-boldonse text-xl text-charcoal leading-none">$272.070</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="text-milk">hola</footer>
+  <script>
+    // Seleccionamos los elementos clave
+    const form = document.getElementById('checkout-form');
+    const step1 = document.getElementById('step-1-info');
+    const step2 = document.getElementById('step-2-payment');
+    const step3 = document.getElementById('step-3-checkout');
+
+    const btnContinue = document.getElementById('btn-continue');
+    const btnBack = document.getElementById('btn-back');
+    const btnContinuePayment = document.getElementById('btn-continue-payment');
+    const btnBackShipping = document.getElementById('btn-back-shipping');
+
+    // Helper para actualizar el stepper visual
+    const updateStepperUI = (currentStepNumber) => {
+      const steppers = [
+        document.getElementById('stepper-info'),
+        document.getElementById('stepper-shipping'),
+        document.getElementById('stepper-payment')
+      ];
+      const lines = [
+        document.getElementById('line-info-shipping'),
+        document.getElementById('line-shipping-payment')
+      ];
+
+      steppers.forEach((stepper, index) => {
+        const stepNum = index + 1;
+        const circle = stepper.querySelector('.stepper-circle');
+        const numSpan = stepper.querySelector('.stepper-num');
+        const checkIcon = stepper.querySelector('.stepper-check');
+        const textObj = stepper.querySelector('.stepper-text');
+
+        // Reset classes
+        stepper.classList.remove('opacity-40');
+        circle.className = 'stepper-circle flex items-center justify-center w-6 h-6 rounded-full transition-colors duration-300';
+        textObj.className = 'stepper-text transition-all duration-300';
+        numSpan.classList.remove('hidden');
+        checkIcon.classList.add('hidden');
+
+        if (stepNum < currentStepNumber) {
+          // Completed
+          circle.classList.add('bg-taupe/30', 'text-charcoal');
+          numSpan.classList.add('hidden');
+          checkIcon.classList.remove('hidden');
+          textObj.classList.add('font-medium');
+        } else if (stepNum === currentStepNumber) {
+          // Active
+          circle.classList.add('bg-charcoal', 'text-milk');
+          textObj.classList.add('font-bold');
+        } else {
+          // Pending
+          stepper.classList.add('opacity-40');
+          circle.classList.add('bg-taupe/30', 'text-charcoal');
+          textObj.classList.add('font-medium');
+        }
+      });
+
+      // Actualizar lineas conectoras
+      if (currentStepNumber > 1) {
+        lines[0].classList.remove('bg-taupe/30');
+        lines[0].classList.add('bg-taupe');
+      } else {
+        lines[0].classList.remove('bg-taupe');
+        lines[0].classList.add('bg-taupe/30');
+      }
+
+      if (currentStepNumber > 2) {
+        lines[1].classList.remove('bg-taupe/30');
+        lines[1].classList.add('bg-taupe');
+      } else {
+        lines[1].classList.remove('bg-taupe');
+        lines[1].classList.add('bg-taupe/30');
+      }
+    };
+
+    // Helper para no validar campos ocultos de siguientes pasos
+    const validateStep = (stepDiv) => {
+      const inputs = stepDiv.querySelectorAll('input:not([type="hidden"]), select:not([hidden]), textarea:not([hidden])');
+      for (let input of inputs) {
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          return false;
+        }
+      }
+      return true;
+    };
+
+    // Botón "Continuar" para avanzar al paso 2
+    btnContinue.addEventListener('click', () => {
+      if (validateStep(step1)) {
+        step1.classList.add('hidden');
+        step2.classList.remove('hidden');
+        step3.classList.add('hidden');
+        updateStepperUI(2);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+
+    // Botón "Volver a información" para regresar al paso 1
+    btnBack.addEventListener('click', () => {
+      step2.classList.add('hidden');
+      step1.classList.remove('hidden');
+      step3.classList.add('hidden');
+      updateStepperUI(1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Botón "Continuar a pago" para avanzar al paso 3
+    btnContinuePayment.addEventListener('click', () => {
+      if (validateStep(step2)) {
+        step1.classList.add('hidden');
+        step2.classList.add('hidden');
+        step3.classList.remove('hidden');
+        updateStepperUI(3);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+
+    // Botón "Volver a envíos" para regresar al paso 2
+    btnBackShipping.addEventListener('click', () => {
+      step3.classList.add('hidden');
+      step2.classList.remove('hidden');
+      step1.classList.add('hidden');
+      updateStepperUI(2);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Inicializar visualmente en paso 1 al cargar
+    updateStepperUI(1);
+
+    // Lógica para mostrar/ocultar detalles de pago
+    const paymentRadios = document.querySelectorAll('input[name="payment-method"]');
+    const creditCardDetails = document.getElementById('credit-card-details');
+    const transferDetails = document.getElementById('transfer-details');
+
+    const updatePaymentView = () => {
+      const selected = document.querySelector('input[name="payment-method"]:checked').value;
+
+      if (selected === 'credit-card') {
+        creditCardDetails.classList.remove('hidden');
+        creditCardDetails.classList.add('flex');
+
+        transferDetails.classList.remove('flex');
+        transferDetails.classList.add('hidden');
+
+        // Habilitar campos requeridos de tarjeta
+        creditCardDetails.querySelectorAll('input').forEach(input => input.required = true);
+      } else if (selected === 'transfer') {
+        transferDetails.classList.remove('hidden');
+        transferDetails.classList.add('flex');
+
+        creditCardDetails.classList.remove('flex');
+        creditCardDetails.classList.add('hidden');
+
+        // Deshabilitar campos requeridos de tarjeta para poder enviar el formulario
+        creditCardDetails.querySelectorAll('input').forEach(input => input.required = false);
+      }
+    };
+
+    // Escuchar cambios en los radio buttons
+    paymentRadios.forEach(radio => {
+      radio.addEventListener('change', updatePaymentView);
+    });
+
+    // Inicializar la vista acorde al radio seleccionado por defecto
+    updatePaymentView();
+
+    // Lógica para el slider del carrito
+    const cartSlider = document.getElementById('cart-slider');
+    const cartIndicators = document.getElementById('cart-slider-indicators');
+    if (cartSlider && cartIndicators) {
+      const indicators = cartIndicators.children;
+      cartSlider.addEventListener('scroll', () => {
+        // Obtenemos el progreso determinando qué elemento está más visible
+        const scrollPosition = cartSlider.scrollLeft;
+        const itemWidth = cartSlider.clientWidth;
+        const index = Math.round(scrollPosition / itemWidth);
+
+        for (let i = 0; i < indicators.length; i++) {
+          if (i === index) {
+            indicators[i].className = 'h-1 flex-1 bg-charcoal rounded-full transition-colors duration-300';
+          } else {
+            indicators[i].className = 'h-1 flex-1 bg-oat/60 rounded-full transition-colors duration-300';
+          }
+        }
+      });
+
+      // Lógica para el drag (arrastrar) con mouse en escritorio
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      cartSlider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        cartSlider.classList.remove('scroll-smooth'); // Deshabilita suavizado para arrastrar nativo
+        startX = e.pageX - cartSlider.offsetLeft;
+        scrollLeft = cartSlider.scrollLeft;
+      });
+
+      cartSlider.addEventListener('mouseleave', () => {
+        isDown = false;
+        cartSlider.classList.add('scroll-smooth');
+      });
+
+      cartSlider.addEventListener('mouseup', () => {
+        isDown = false;
+        cartSlider.classList.add('scroll-smooth');
+      });
+
+      cartSlider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - cartSlider.offsetLeft;
+        const walk = (x - startX) * 1.5; // Ajusta velocidad del scrolleo
+        cartSlider.scrollLeft = scrollLeft - walk;
+      });
+    }
+
+    // Lógica para el menú mobile
+    const mobileMenu = document.getElementById('mobile-menu');
+    const openMenuBtn = document.getElementById('open-menu');
+    const closeMenuBtn = document.getElementById('close-menu');
+
+    if (mobileMenu && openMenuBtn && closeMenuBtn) {
+      openMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('translate-x-full');
+      });
+      closeMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+      });
+    }
+  </script>
+</body>
+
+</html>
