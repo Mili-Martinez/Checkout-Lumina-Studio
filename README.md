@@ -1,5 +1,7 @@
 # Lumina Studio — Luxury Checkout Experience
 
+<img src="lumina.jpg" alt="Lumina-Studio" width="100%">
+
 Lumina Studio is a high-end checkout interface designed for a fictional sustainable lighting brand that produces 3D-printed designer lamps. The objective of this project was to engineer a purchase flow that reflects technical precision, minimalist aesthetics, and the sophisticated nature of custom industrial design.
 
 🎯 The Challenge
