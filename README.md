@@ -21,4 +21,4 @@ The goal for Lumina Studio was to break away from traditional, generic payment f
 * **Deployment:** GitHub Pages
 
 🚀 Live Demo
-✨ Explore the live experience here: [Lumina Studio — Live Demo](https://mili-martinez.github.io/Portfolio/)
+✨ Explore the live experience here: [Lumina Studio — Live Demo]https://mili-martinez.github.io/Checkout-Lumina-Studio/)
